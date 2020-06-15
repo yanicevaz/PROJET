@@ -2,11 +2,12 @@ from stl import mesh
 from mpl_toolkits import mplot3d
 from matplotlib import pyplot
 
-class Figure:
+class Figure: #source : https://w.wol.ph/2015/07/10/rendering-stl-files-matplotlib-numpy-stl/
     def __init__(self,point1,point2,point3):
         self.__point1 = point1
         self.__point2 = point2
         self.__point3 = point3
+        
 # Create a new plot
 figure = pyplot.figure()
 axes = mplot3d.Axes3D(figure)
