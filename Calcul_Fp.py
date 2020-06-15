@@ -1,7 +1,6 @@
 from Calcul_dS import *
 
 #Calcul de la force de pression sur une facette imergée
-
 def CalculF(Coordonee):
     p = 1.025
     g = 9.80665
