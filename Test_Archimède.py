@@ -7,7 +7,7 @@ class Figure: #source : https://w.wol.ph/2015/07/10/rendering-stl-files-matplotl
         self.__point1 = point1
         self.__point2 = point2
         self.__point3 = point3
-        
+
 # Create a new plot
 figure = pyplot.figure()
 axes = mplot3d.Axes3D(figure)
