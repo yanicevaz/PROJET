@@ -121,8 +121,8 @@ def CalculPousseeArchimede(list,Translation):
                     PousseArchimede[n] = PousseArchimede[n] + x[n] + y[n]
     return PousseArchimede[2],list
 
-#Test
-#A=[1,3,2]
-#B=[-5,0,4]
-#C=PointAuNiveauDeLeauSurLaDroite(A,B)
-#print(C)
+# Test
+# A=[1,3,2]
+# B=[-5,0,4]
+# C=PointAuNiveauDeLeauSurLaDroite(A,B)
+# print(C)

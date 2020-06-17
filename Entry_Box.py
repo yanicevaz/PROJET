@@ -10,7 +10,6 @@ class Entry_Box(QWidget):
         button_1.move(200,400)
         button_1.clicked.connect(self.show_next_app)
 
-
     def show_next_app(self):
         userInfo = QMessageBox.question(self,"Confirmation", "Confirmer",QMessageBox.Yes | QMessageBox.No)
         if userInfo == QMessageBox.Yes:
