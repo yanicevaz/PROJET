@@ -11,13 +11,13 @@ class Figure: #source : https://w.wol.ph/2015/07/10/rendering-stl-files-matplotl
 # Create a new plot
 figure = pyplot.figure()
 axes = mplot3d.Axes3D(figure)
-# Load the STL files and add the vectors to the plot
+#Load the STL files and add the vectors to the plot
 your_mesh = mesh.Mesh.from_file('Rectangular_HULL.stl')
 axes.add_collection3d(mplot3d.art3d.Poly3DCollection(your_mesh.vectors))
-# Auto scale to the mesh size
+#Auto scale to the mesh size
 scale = your_mesh.points.flatten("C")
 for i in your_mesh.vectors:
     print(i)
 axes.auto_scale_xyz(scale, scale, scale)
-# Show the plot to the screen
+#Show the plot to the screen
 pyplot.show()

@@ -2,7 +2,21 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from Recup_Coo_Facettes import *
+from stl import mesh
+from mpl_toolkits import mplot3d
+from matplotlib import pyplot
+
+class Figure:
+    def __init__(self,point1,point2,point3):
+        self.__point1 = point1
+        self.__point2 = point2
+        self.__point3 = point3
+figure = pyplot.figure()
+axes = mplot3d.Axes3D(figure)
+your_mesh = mesh.Mesh.from_file('Rectangular_HULL.stl')
+axes.add_collection3d(mplot3d.art3d.Poly3DCollection(your_mesh.vectors))
+scale = your_mesh.points.flatten("C")
+axes.auto_scale_xyz(scale, scale, scale)
 
 class Window(QWidget):
     def __init__(self):
@@ -31,6 +45,7 @@ class Window(QWidget):
 
         self.button_2 = QPushButton("Exit")
         self.layout.addWidget(self.button_2,1,8,1,1)
+        self.button_2.clicked.connect(self.exit)
 
         #Graphique
         self.fig2 = plt.figure()
@@ -50,6 +65,9 @@ class Window(QWidget):
         axes.auto_scale_xyz(scale, scale, scale)
         self.canvas.draw()
         self.layout.addWidget(self.canvas,2,0,4,4)
+
+    def exit(self):
+        window.close()
 
 if __name__ == "__main__":
     import sys
