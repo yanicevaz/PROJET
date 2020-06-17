@@ -29,7 +29,7 @@ class Window(QWidget):
 
         #Button
         self.button_1 = QPushButton("Start simulation")
-        self.button_1.setStyleSheet("background-image: url(bateau.jpg)")
+        #self.button_1.setStyleSheet("background-image: url(logo.jpg)")
         self.button_1.setFixedSize(450,273)
 
         self.layout.addWidget(self.button_1)

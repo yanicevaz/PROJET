@@ -1,5 +1,6 @@
 from Calcul_dS import *
 from stl import mesh
+from Algo_Dichotomie import *
 
 #Calcul de la force de pression sur une facette imergée
 def CalculF(Coordonee):
@@ -26,10 +27,6 @@ def TranslationSelonZ (choixtransla,list):
     for i in list:
         for y in i:
             y[2] = y[2] + choixtransla
-
-your_mesh = mesh.Mesh.from_file('Rectangular_HULL.stl')
-list = your_mesh.vectors
-PousseArchimede = [0,0,0]
 
 def CalculPousseeArchimede(list,Translation):
     PousseArchimede = [0,0,0]
@@ -120,9 +117,3 @@ def CalculPousseeArchimede(list,Translation):
                 for n in range(len(PousseArchimede)) :
                     PousseArchimede[n] = PousseArchimede[n] + x[n] + y[n]
     return PousseArchimede[2],list
-
-# Test
-# A=[1,3,2]
-# B=[-5,0,4]
-# C=PointAuNiveauDeLeauSurLaDroite(A,B)
-# print(C)
