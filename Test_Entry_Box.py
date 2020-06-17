@@ -85,7 +85,7 @@ class Window(QWidget):
         print(monBateau.getCoque())
 
 if __name__ == "__main__":
-        application = QApplication([])
-        window = Window()
-        window.show()
-        application.exec_()
+    application = QApplication([])
+    window = Window()
+    window.show()
+    application.exec_()

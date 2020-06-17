@@ -21,14 +21,14 @@ class Bateau:
             for y in i:
                 y[2] = y[2] + choixtransla
 
-#Tests
-tonnerre = Bateau("PetitTonerre",100,'Cylindrical__HULL.stl')
-print(CalculF(tonnerre.getMesh().vectors[0],9.81))
-print(CalculF([[0,0,0],[1,0,0],[0,1,0]],9.81))
-print(CalculF([[0,0,-1],[1,0,-1],[0,1,-1]],9.81)) #On s'attends a pression/2
+# #Tests
+# tonnerre = Bateau("PetitTonerre",100,'Cylindrical__HULL.stl')
+# print(CalculF(tonnerre.getMesh().vectors[0],9.81))
+# print(CalculF([[0,0,0],[1,0,0],[0,1,0]],9.81))
+# print(CalculF([[0,0,-1],[1,0,-1],[0,1,-1]],9.81)) #On s'attends a pression/2
 
-#Test calcul DS
-a = [1,0,0]
-b = [0,1,0]
-print(CalculPousseeArchimede(tonnerre,0))
-print(CalculDS(a,b))
+# #Test calcul DS
+# a = [1,0,0]
+# b = [0,1,0]
+# print(CalculPousseeArchimede(tonnerre,0))
+# print(CalculDS(a,b))
