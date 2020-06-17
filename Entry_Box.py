@@ -3,17 +3,16 @@ from Final_Interface import *
 class Entry_Box(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("QPushButton")
-        self.setGeometry(100,100,100,100)
-        self.setButton()
+        self.setWindowTitle("Interface")
+        self.setGeometry(500,500,500,500)
 
-    def setButton(self):
-        button_1 = QPushButton("Next",self)
-        button_1.move(25,25)
+        button_1 = QPushButton("Ok",self)
+        button_1.move(200,400)
         button_1.clicked.connect(self.show_next_app)
 
+
     def show_next_app(self):
-        userInfo = QMessageBox.question(self,"Confirmation", "Do you want to see these big boats?",QMessageBox.Yes | QMessageBox.No)
+        userInfo = QMessageBox.question(self,"Confirmation", "Confirmer",QMessageBox.Yes | QMessageBox.No)
         if userInfo == QMessageBox.Yes:
             window_1.hide()
             window_2.show()
