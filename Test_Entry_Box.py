@@ -4,14 +4,16 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from stl import mesh
 from mpl_toolkits import mplot3d
 import sys
-from Bateau import *
+
 
 class Window(QWidget):
+
     def __init__(self):
         QWidget.__init__(self)
         #self.__gravite = 9.81 #Initiale
         self.__boat = ""
         self.__gravite = 0
+        #Config initiale
         self.setWindowTitle("Position d'équilibre d'un bateau")
         self.setMinimumSize(500, 300)
 
@@ -23,6 +25,7 @@ class Window(QWidget):
 
         #Messages bienvenue et choix, ajout au layout
         self.welcome = QLabel("Bienvenue sur l'interface de calcul de position de bateaux à l'équilibre")
+
         self.choix1 = QLabel("Veuillez entrez votre masse (en kg) ainsi que  votre choix de gravité : ")
         self.choix2 = QLabel("Veuillez choisir votre bateau")
         self.layout.addWidget(self.welcome)
@@ -38,6 +41,7 @@ class Window(QWidget):
         self.entreemasse = QLabel("Entrez la masse du bateau :")
         self.txtenter = QLineEdit("300")
 
+
         #Organisation des layouts
         self.layoutEntrees.addWidget(self.choose)
         self.layoutEntrees.addWidget(self.entreemasse)
@@ -51,24 +55,42 @@ class Window(QWidget):
         # self.buttonbateau = QPushButton("bato 1")
         # self.buttonbateau.setStyleSheet("background-image: url(bah-tot.jpg)")
         # self.buttonbateau.setFixedSize(200,121)
-        
         #self.layout.addWidget(self.buttonbateau)
+
+
+
+
+
         self.VHullButton = QRadioButton()
         self.VHullButton.setText("Bateau 1 : V_Hull")
+
         self.layoutBateau1.addWidget(self.VHullButton)
+
         self.RectangularButton = QRadioButton()
         self.RectangularButton.setText("Bateau 2 : Rectangular_HULL")
+
         self.layoutBateau1.addWidget(self.RectangularButton)
+
         self.layout.addLayout(self.layoutBateau1)
+
         self.buttonvalidate = QPushButton("Valider")
         self.buttonvalidate.clicked.connect(self.buttonClicked)
+        #Obligatoire pour mettre en marche le message d'erreur
+        self.txtErreur = QLabel()
+
         self.layout.addWidget(self.buttonvalidate)
+        self.layout.addWidget(self.txtErreur)
+
         self.setLayout(self.layout)
 
+
+
     def buttonClicked(self):
+
         #Recuperation de la valeur du menu déroulant
         if self.choose.currentText() == "Gravite lunaire":
             self.__gravite = 1.62
+
         elif self.choose.currentText() == "Gravite martienne":
             self.__gravite = 3.71
         elif self.choose.currentText() == "Gravite terrestre":
@@ -77,22 +99,54 @@ class Window(QWidget):
         #Recuperation de la masse
         self.__masse = self.txtenter.text()
 
+
         #Recuperation du choix de fichier
-        if (self.RectangularButton.isChecked() == False and self.VHullButton.isChecked()) == False:
+
+    
+        if self.RectangularButton.isChecked() == False and self.VHullButton.isChecked() == False:
+            #Eviter la succession des messages d'erreurs
+            self.layout.removeWidget(self.txtErreur)
             self.txtErreur = QLabel("Vous devez choisir un modèle de bateau !")
+            self.txtErreur.setBold()
             self.layout.addWidget(self.txtErreur)
-            #self.setLayout(self.layout)
+
         if self.RectangularButton.isChecked() == True :
             self.__boat = "Rectangular_HULL.stl"
         elif self.VHullButton.isChecked() == True :
             self.__boat = "V_HULL.stl"
 
         #Test
-        monBateau = Bateau("Salut",self.__masse,self.__boat,self.__gravite)
-        print(monBateau.getCoque())
+        #monBateau = Bateau("Salut",self.__masse,self.__boat,self.__gravite)
+        #print(monBateau.getCoque())
+
+class Bateau:
+    def __init__(self, nom, masse, boat, gravite):
+        self.__nom = nom
+        self.__masse = masse
+        self.__boat = boat
+        self.__gravite = gravite
+        self.__mesh = mesh.Mesh.from_file(self.__boat)
+
+    def getNom(self):
+        return self.__nom
+    def getMasse(self):
+        return self.__masse
+    def getCoque(self):
+        return self.__boat
+    def getGravite(self):
+        return self.__gravite
+    def getMesh(self):
+        return self.__mesh
+    def translaZ(self,choixtransla):
+        for i in self.__mesh.vectors:
+            for y in i:
+                y[2] = y[2] + choixtransla
+
+
+
 
 if __name__ == "__main__":
-    application = QApplication([])
-    window = Window()
-    window.show()
-    application.exec_()
+        application = QApplication([])
+        window = Window()
+        window.show()
+        application.exec_()
