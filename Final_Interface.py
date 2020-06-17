@@ -69,6 +69,7 @@ class Window(QWidget):
     def exit(self):
         window.close()
 
+
 if __name__ == "__main__":
     import sys
     app = QApplication()
