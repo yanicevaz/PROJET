@@ -12,39 +12,46 @@ class Window(QWidget):
         #self.__gravite = 9.81 #Initiale
         self.__boat = ""
         self.__gravite = 0
-        #Config initiale
         self.setWindowTitle("Position d'équilibre d'un bateau")
         self.setMinimumSize(500, 300)
+
         #Layouts
         self.layout = QVBoxLayout()
         self.layoutEntrees = QHBoxLayout()
         self.layoutBateau1 = QHBoxLayout()
         self.layoutBateau2 = QHBoxLayout()
+
         #Messages bienvenue et choix, ajout au layout
         self.welcome = QLabel("Bienvenue sur l'interface de calcul de position de bateaux à l'équilibre")
         self.choix1 = QLabel("Veuillez entrez votre masse (en kg) ainsi que  votre choix de gravité : ")
         self.choix2 = QLabel("Veuillez choisir votre bateau")
         self.layout.addWidget(self.welcome)
         self.layout.addWidget(self.choix1)
+
         #Creation menu déroulant
         self.choose = QComboBox()
         self.choose.addItem("Gravite terrestre") #9.81
         self.choose.addItem("Gravite lunaire") #1.62
         self.choose.addItem("Gravite martienne") #3.71
+
         #Entrée de la masse
         self.entreemasse = QLabel("Entrez la masse du bateau :")
         self.txtenter = QLineEdit("300")
+
         #Organisation des layouts
         self.layoutEntrees.addWidget(self.choose)
         self.layoutEntrees.addWidget(self.entreemasse)
         self.layoutEntrees.addWidget(self.txtenter)
+
         #Ajout au layout en respectant l'ordre
         self.layout.addLayout(self.layoutEntrees)
         self.layout.addWidget(self.choix2)
+
         #Bouton + image
         # self.buttonbateau = QPushButton("bato 1")
         # self.buttonbateau.setStyleSheet("background-image: url(bah-tot.jpg)")
         # self.buttonbateau.setFixedSize(200,121)
+        
         #self.layout.addWidget(self.buttonbateau)
         self.VHullButton = QRadioButton()
         self.VHullButton.setText("Bateau 1 : V_Hull")
